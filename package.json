@@ -1,10 +1,10 @@
 {
-  "name": "auth",
+  "name": "auth-google",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,18 @@
   "bugs": {
     "url": "https://github.com/iaiw3br/auth/issues"
   },
-  "homepage": "https://github.com/iaiw3br/auth#readme"
+  "homepage": "https://github.com/iaiw3br/auth#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "google-auth-library": "^7.3.0",
+    "sequelize": "^6.6.5"
+  },
+  "devDependencies": {
+    "body-parser": "^1.19.0",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.12"
+  }
 }
