@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+          content="233799263803-sq50q1v080tgpon62plbk8van54aikuj.apps.googleusercontent.com">
+    <title>Login</title>
+</head>
+<body>
+
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<div>
+    <a href="#" onclick="onSignOut()">Sign Out</a>
+</div>
+
+<script>
+
+    function onSignIn(googleUser) {
+        const token = googleUser.getAuthResponse().id_token;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/login');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        xhr.onload = () => {
+            if (xhr.responseText === 'success-token') {
+                location.assign('profile');
+            }
+        }
+
+        xhr.send(JSON.stringify({token}))
+    }
+
+    async function onSignOut() {
+        const auth2 = gapi.auth2.getAuthInstance();
+        try {
+            await auth2.signOut();
+            console.log('User signed out.');
+        } catch (err) {
+            console.error(err.message);
+        }
+    }
+</script>
+</body>
+</html>
